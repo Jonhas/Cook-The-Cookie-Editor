@@ -1,9 +1,9 @@
 #ifndef COOK_H
 #define COOK_H
 
+#include <termios.h>
+
 typedef struct termios termios; 
-void disable_raw_mode(); 
-void enable_raw_mode(); 
-void error(const char *c); 
+termios orig_terminal;
 
 #endif
