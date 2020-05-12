@@ -1,10 +1,11 @@
 #include <unistd.h>
 
 #include "../include/output_functions.h"
+#include "../include/cook.h"
 
 void editor_draw_rows()
 {
-    for (int i = 0; i < 24; i++)
+    for (int i = 0; i < editor.screen_rows; i++)
     {
         write(STDOUT_FILENO, "~\r\n", 3); 
     }

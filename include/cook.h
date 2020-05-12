@@ -7,6 +7,8 @@ typedef struct termios termios;
 typedef struct editor_config editor_config; 
 
 struct editor_config{
+    int screen_rows; 
+    int screen_columns; 
     termios orig_terminal;     
 }; 
 

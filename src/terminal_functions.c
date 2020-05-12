@@ -3,6 +3,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/ioctl.h>
+
 #include "../include/input_functions.h"
 #include "../include/cook.h"
 
@@ -51,6 +53,27 @@ void enable_raw_mode()
     
     if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw)==-1)
         error("tcsetattr failed, cannot apply modifications to termios"); 
+}
+
+
+/*
+ * A function to get the size of the terminal 
+ */
+int get_window_size(int *rows, int *columns)
+{
+    if (rows == NULL || columns == NULL)
+        return -1;
+
+    struct winsize ws;
+    
+    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws)==-1 || ws.ws_col == 0)
+        return -1;
+    else 
+    {
+        *columns = ws.ws_col; 
+        *rows = ws.ws_row; 
+        return 0;
+    }
 }
 
 /*
