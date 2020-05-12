@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <unistd.h>
 #include "../include/input_functions.h"
 #include "../include/terminal_functions.h"
 
@@ -13,6 +13,9 @@ void editor_process_keypress(){
     {
         case CTRL_KEY('x'):
             {
+                write(STDOUT_FILENO, "\x1b[2J", 4); 
+                write(STDOUT_FILENO, "\x1b[H", 3); 
+
                exit(0); 
                break; 
             }

@@ -12,6 +12,9 @@
  */
 void error(const char *c)
 {
+    write(STDOUT_FILENO, "\x1b[2J", 4); 
+    write(STDOUT_FILENO, "\x1b[H", 3); 
+
     perror(c); 
     exit(1); 
 }
@@ -22,7 +25,7 @@ void error(const char *c)
  */ 
 void disable_raw_mode()
 {
-    if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_terminal)==-1)
+    if(tcsetattr(STDIN_FILENO, TCSAFLUSH, &editor.orig_terminal)==-1)
         error("tcsetattr failed, cannot establish canonical mode"); 
 }
 
@@ -32,12 +35,12 @@ void disable_raw_mode()
  */
 void enable_raw_mode()
 {
-    if(tcgetattr(STDIN_FILENO, &orig_terminal)==-1)
+    if(tcgetattr(STDIN_FILENO, &editor.orig_terminal)==-1)
         error("tcgetattr failed, cannot disable canonical mode");
     
     atexit(disable_raw_mode);
     
-    termios raw = orig_terminal; 
+    termios raw = editor.orig_terminal; 
 
     raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON); 
     raw.c_oflag &= ~(OPOST); 
