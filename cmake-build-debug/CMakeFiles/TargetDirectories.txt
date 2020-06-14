@@ -1,3 +1,0 @@
-/home/megu/Programming/c/cookie_editor/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/megu/Programming/c/cookie_editor/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/megu/Programming/c/cookie_editor/cmake-build-debug/CMakeFiles/cook.dir
