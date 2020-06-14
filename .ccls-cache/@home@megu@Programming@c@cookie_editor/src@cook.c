@@ -7,7 +7,8 @@
 int main()
 {
     enable_raw_mode(); 
-    init_editor();
+    init_editor(); 
+
     while(1)
     {
         editor_refresh_screen();     

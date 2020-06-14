@@ -7,7 +7,7 @@ void editor_draw_rows()
 {
     for (int i = 0; i < editor.screen_rows; i++)
     {
-        write(STDOUT_FILENO, "~\r\n", 3); 
+        write(STDOUT_FILENO, "λ\r\n", 3); 
     }
 }
 
